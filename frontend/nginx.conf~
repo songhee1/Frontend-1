@@ -1,0 +1,9 @@
+server{
+	listen 80;
+	location / {
+		root /src;
+		index index.tsx;
+		try_files $uri $uri/ /index.tsx;
+	}
+}
+
