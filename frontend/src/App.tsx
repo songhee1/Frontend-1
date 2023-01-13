@@ -41,7 +41,6 @@ body {
   padding: 10px ;
   background-color:#FCFCFC;
   font-family: 'Roboto Slab', serif;
-  height:100vh;
 }
 ol, ul {
 	list-style: none;

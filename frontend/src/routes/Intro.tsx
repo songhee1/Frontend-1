@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import Login from './Login';
 import logoImage from '../Logo.png';
+import axios from 'axios';
+import Slider from './Slider';
 const Intro = () => {
   const Container = styled.div`
     display: flex;
@@ -25,13 +27,8 @@ const Intro = () => {
     width: 150px;
     background-size: contain;
   `;
-  const ImageSlider = styled.ul`
-    height: 200px;
-    background-color: black;
-    width: 600px;
-  `;
-  const SliderElement = styled.li``;
-  const ChangePagesPoiner = styled.a``;
+  
+ 
   const LoginContainer = styled.div`
     background-color: white;
     display: flex;
@@ -44,16 +41,13 @@ const Intro = () => {
     margin: 0px 20px;
     border: 1px solid #b2bec3;
   `;
+ 
 
   return (
     <Container>
       <Info>
         <Logo></Logo>
-        <ImageSlider>
-          <SliderElement></SliderElement>
-          <ChangePagesPoiner />
-          <ChangePagesPoiner />
-        </ImageSlider>
+          <Slider/>
       </Info>
       <LoginContainer>
         Unigram
