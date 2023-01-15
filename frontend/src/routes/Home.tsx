@@ -3,6 +3,6 @@ import { useEffect } from 'react';
 import NaverLogin from '../NaverLogin';
 
 const Home = () => {
-  return <div> login finish</div>;
+  return <div> hi! we will start unigram main posts!</div>;
 };
 export default Home;

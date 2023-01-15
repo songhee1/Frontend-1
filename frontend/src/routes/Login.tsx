@@ -42,15 +42,16 @@ const Login = () => {
     const token = location.hash.split('=')[1].split('&')[0];
     // window.location.replace('/mainpage');
     localStorage.setItem('access_token', token);
-    axios
-      .post('http://localhost:8080/api/auth/user', {
-        token: localStorage.getItem('access_token'),
-      })
-      .then((res) => {
-        console.log(res);
-        //     //서버측에서 로직이 완료되면 메인페이지로 보내준다
-        window.location.replace('/');
-      });
+    // axios
+    //   .post('http://localhost:8080/api/auth/user', {
+    //     token: localStorage.getItem('access_token'),
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     //     //서버측에서 로직이 완료되면 메인페이지로 보내준다
+    //     window.location.replace('/');
+    //   });
+    window.location.replace('/');
   };
 
   useEffect(() => {
