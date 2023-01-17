@@ -1,8 +1,19 @@
-import axios from 'axios';
-import { useEffect } from 'react';
-import NaverLogin from '../NaverLogin';
-
+import styled from 'styled-components';
+import Contents from './Contents';
+import Header from './Header';
 const Home = () => {
-  return <div> hi! we will start unigram main posts!</div>;
+  return (
+    <Container>
+      <Header />
+      <Contents />
+    </Container>
+  );
 };
 export default Home;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+`;

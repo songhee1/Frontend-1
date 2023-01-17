@@ -1,9 +1,18 @@
-
 import Router from './Router';
 import { createGlobalStyle } from 'styled-components';
 
 function App() {
-  const GlobalStyle = createGlobalStyle`
+
+  return (
+    <div className="App">
+      <GlobalStyle />
+      <Router />
+    </div>
+  );
+}
+
+export default App;
+const GlobalStyle = createGlobalStyle`
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -32,9 +41,9 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-  min-width:1200px;
-  margin:20px 20px;
-  padding: 10px ;
+     min-width:1200px;
+//   margin:20px 20px;
+//   padding: 10px ;
   background-color:#FCFCFC;
   font-family: 'Roboto Slab', serif;
 }
@@ -54,12 +63,3 @@ table {
 	border-spacing: 0;
 }
   `;
-  return (
-    <div className="App">
-      <GlobalStyle />
-      <Router />
-    </div>
-  );
-}
-
-export default App;

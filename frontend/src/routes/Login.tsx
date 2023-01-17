@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const Login = () => {
   const { naver }: Window = window;
@@ -60,9 +61,13 @@ const Login = () => {
   }, []);
 
   return (
-    <div>
+    <LoginContainer>
       <div id="naverIdLogin"></div>
-    </div>
+    </LoginContainer>
   );
 };
 export default Login;
+
+const LoginContainer=styled.div`
+  padding:20px 0px;
+`

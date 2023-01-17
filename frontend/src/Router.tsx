@@ -1,11 +1,10 @@
 import { access } from 'fs';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import NaverLogin from './NaverLogin';
-import Login from './routes/Login';
 import Home from './routes/Home';
 import axios from 'axios';
 import Intro from './routes/Intro';
+import Profile from './routes/Profile';
 function Router() {
   const accessToken = localStorage.getItem('access_token');
   const sendTokenToBackend = () => {
@@ -28,6 +27,11 @@ function Router() {
     <BrowserRouter>
       <Switch>
         <Route path="/">{accessToken ? <Home /> : <Intro />}</Route>
+      </Switch>
+      <Switch>
+        <Route path="/profile">
+          <Profile/>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

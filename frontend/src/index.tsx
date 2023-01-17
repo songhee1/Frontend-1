@@ -5,14 +5,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
 import { light_mode_theme } from './theme';
+import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 root.render(
-  <ThemeProvider theme={light_mode_theme}>
-    <App />
-  </ThemeProvider>,
+  <React.StrictMode>
+    <RecoilRoot>
+      <ThemeProvider theme={light_mode_theme}>
+        <App />
+      </ThemeProvider>
+    </RecoilRoot>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
