@@ -55,10 +55,13 @@ export default Header;
 const NavigationBar = styled.div`
   background-color: white;
   width: 10%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  top: 0;
+  position: fixed;
 `;
 const Items = styled.ul`
   justify-content: center;

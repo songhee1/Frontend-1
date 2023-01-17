@@ -12,7 +12,7 @@ export default Contents;
 const RightContainer = styled.div`
   background-color: whitesmoke;
   width: 100%;
-  height: 100%;
+  
   justify-content: center;
   align-items: center;
   display: flex;
