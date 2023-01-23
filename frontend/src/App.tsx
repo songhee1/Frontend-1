@@ -2,7 +2,6 @@ import Router from './Router';
 import { createGlobalStyle } from 'styled-components';
 
 function App() {
-
   return (
     <div className="App">
       <GlobalStyle />
