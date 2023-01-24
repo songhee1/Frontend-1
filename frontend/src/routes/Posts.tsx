@@ -43,7 +43,7 @@ const Posts = () => {
         {JSON.stringify(photos) === JSON.stringify([]) ? (
           <>
             <Skeleton>
-            <SkeletonImg/>
+              <SkeletonImg />
             </Skeleton>
           </>
         ) : (
@@ -88,8 +88,17 @@ export default Posts;
 const PostContainer = styled.div`
   width: 55%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
-const CardList = styled.ul``;
+const CardList = styled.ul`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 const Card = styled.li`
   background-color: white;
   height: 1000px;
@@ -98,6 +107,8 @@ const Card = styled.li`
   flex-direction: column;
   align-items: center;
   width: 95%;
+  padding: 20px;
+  border-radius: 20px;
 `;
 const Skeleton = styled(Card)``;
 const CardImg = styled.img`
@@ -130,4 +141,6 @@ const Logo = styled.img`
 `;
 const Great = styled.div``;
 const Comment = styled.div``;
-const Spinner = styled.img``;
+const Spinner = styled.img`
+  width: 100px;
+`;

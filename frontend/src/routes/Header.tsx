@@ -19,32 +19,39 @@ const Header = () => {
   const [profile, setProfile] = useRecoilState(buttonProfile);
   return (
     <NavigationBar>
-      Unigram
+      <h2>Unigram</h2>
       <Items>
         <Item
           onClick={() => {
             setHome((prev) => !prev);
+            setAlarm(false);
           }}
         >
-          {home ? <AiFillHome /> : <AiOutlineHome />}홈
+          {home ? <AiFillHome /> : <AiOutlineHome />}
+          <span style={{ margin: '0px 5px' }}>홈</span>
         </Item>
-        <Item onClick={() => setAlarm((prev) => !prev)}>
+        <Item
+          onClick={() => {
+            setAlarm((prev) => !prev);
+            setHome(false);
+          }}
+        >
           {alarm ? <AiFillHeart /> : <AiOutlineHeart />}
-          알림
+          <span style={{ margin: '0px 5px' }}>알림</span>
         </Item>
         <Item onClick={() => setMake((prev) => !prev)}>
           <AiOutlinePlusSquare />
-          만들기
+          <span style={{ margin: '0px 5px' }}>만들기</span>
         </Item>
         <Item>
           <Link to="/profile">
             <BsPersonCircle />
-            프로필
+            <span style={{ margin: '0px 5px' }}> 프로필</span>
           </Link>
         </Item>
         <Item>
           <AiOutlineMenu />
-          메뉴
+          <span style={{ margin: '0px 5px' }}>메뉴</span>
         </Item>
       </Items>
     </NavigationBar>
@@ -54,7 +61,7 @@ export default Header;
 
 const NavigationBar = styled.div`
   background-color: white;
-  width: 10%;
+  width: 20%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -62,13 +69,15 @@ const NavigationBar = styled.div`
   align-items: center;
   top: 0;
   position: fixed;
+  border: 1px solid #a3a3a3;
 `;
 const Items = styled.ul`
   justify-content: center;
   align-items: center;
 `;
 const Item = styled.li`
-  margin: 20px 0px;
-  justify-content: center;
+  margin: 25px 0px;
+  display: flex;
   align-items: center;
+  font-size: 20px;
 `;
