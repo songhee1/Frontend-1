@@ -42,6 +42,7 @@ const Login = () => {
     if (!location.hash) return;
     const token = location.hash.split('=')[1].split('&')[0];
     // window.location.replace('/mainpage');
+    console.log(token);
     localStorage.setItem('access_token', token);
     // axios
     //   .post('http://localhost:8080/api/auth/user', {
@@ -50,7 +51,7 @@ const Login = () => {
     //   .then((res) => {
     //     console.log(res);
     //     //     //서버측에서 로직이 완료되면 메인페이지로 보내준다
-    //     window.location.replace('/');
+    //     // window.location.replace('/');
     //   });
     window.location.replace('/');
   };
@@ -68,6 +69,6 @@ const Login = () => {
 };
 export default Login;
 
-const LoginContainer=styled.div`
-  padding:20px 0px;
-`
+const LoginContainer = styled.div`
+  padding: 20px 0px;
+`;

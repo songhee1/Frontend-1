@@ -86,17 +86,15 @@ const Posts = () => {
 export default Posts;
 
 const PostContainer = styled.div`
-  width: 55%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin-left: 10%;
+  width: 100%;
+  background-color: whitesmoke;
+  display:flex;
+  justify-content:center;
+  
 `;
 const CardList = styled.ul`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  width: 55%;
   justify-content: center;
 `;
 const Card = styled.li`

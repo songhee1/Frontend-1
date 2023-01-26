@@ -20,8 +20,6 @@ function Router() {
   };
   useEffect(() => {
     // sendTokenToBackend();
-    if (accessToken) <Home />;
-    else <Intro />;
   }, [accessToken]);
   return (
     <BrowserRouter>
@@ -30,7 +28,7 @@ function Router() {
       </Switch>
       <Switch>
         <Route path="/profile">
-          <Profile/>
+          <Profile />
         </Route>
       </Switch>
     </BrowserRouter>

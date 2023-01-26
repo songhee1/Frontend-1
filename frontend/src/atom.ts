@@ -20,3 +20,13 @@ export const buttonProfile = atom({
   key: `btnProfile/${v1()}`, // unique ID (with respect to other atoms/selectors)
   default: false, // default value (aka initial value)
 });
+
+export const buttonModal = atom({
+  key: `btnModal/${v1()}`,
+  default: false,
+});
+
+export const modalPageNum = atom({
+  key: `modalPageNum/${v1()}`,
+  default: 1,
+});

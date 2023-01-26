@@ -1,7 +1,12 @@
 import Router from './Router';
 import { createGlobalStyle } from 'styled-components';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { buttonModal } from './atom';
 
 function App() {
+  const modal = useRecoilValue(buttonModal);
+  if (modal) document.body.style.overflow = 'hidden';
+  else document.body.style.overflow = 'auto';
   return (
     <div className="App">
       <GlobalStyle />

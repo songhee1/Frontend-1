@@ -7,6 +7,7 @@ import Footer from './Footer';
 const Intro = () => {
   return (
     <Container>
+      
       <Info>
         <Logo></Logo>
         <Slider />
@@ -15,6 +16,7 @@ const Intro = () => {
         Unigram
         <Login />
       </LoginContainer>
+    
       <Footer/>
     </Container>
   );
@@ -27,7 +29,9 @@ const Container = styled.div`
   align-items: center;
   margin: 20px 20px;
   padding: 10px;
+  padding-bottom:110px;
 `;
+
 const Info = styled.div`
   background-color: #fcfcfc;
   width: 600px;

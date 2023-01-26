@@ -62,16 +62,28 @@ const Slider = () => {
           <AiFillRightCircle size="36" />
         </ArrowNextPoiner>
         <ChangePagesPoiner onClick={movingOne}>
-          <BsFillCircleFill size="10" color={slideNum==0?"#dfe6e9":"black"}/>
+          <BsFillCircleFill
+            size="10"
+            color={slideNum == 0 ? '#dfe6e9' : 'black'}
+          />
         </ChangePagesPoiner>
         <ChangePagesPoiner onClick={movingTwo}>
-          <BsFillCircleFill size="10" color={slideNum==1?"#dfe6e9":"black"}/>
+          <BsFillCircleFill
+            size="10"
+            color={slideNum == 1 ? '#dfe6e9' : 'black'}
+          />
         </ChangePagesPoiner>
         <ChangePagesPoiner onClick={movingThree}>
-          <BsFillCircleFill size="10" color={slideNum==2?"#dfe6e9":"black"}/>
+          <BsFillCircleFill
+            size="10"
+            color={slideNum == 2 ? '#dfe6e9' : 'black'}
+          />
         </ChangePagesPoiner>
         <ChangePagesPoiner onClick={movingFour}>
-          <BsFillCircleFill size="10" color={slideNum==3?"#dfe6e9":"black"}/>
+          <BsFillCircleFill
+            size="10"
+            color={slideNum == 3 ? '#dfe6e9' : 'black'}
+          />
         </ChangePagesPoiner>
       </Pointer>
     </>
@@ -105,12 +117,12 @@ const Pointer = styled.div`
   display: flex;
 `;
 const ChangePagesPoiner = styled.div`
-  padding:0px 5px;
+  padding: 0px 5px;
 `;
 const ArrowPrevPoiner = styled.div`
   position: absolute;
   transform: translate(-300px, -170px);
 `;
 const ArrowNextPoiner = styled(ArrowPrevPoiner)`
-  transform: translate(302px, -170px);
+  transform: translate(350px, -170px);
 `;
