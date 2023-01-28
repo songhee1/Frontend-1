@@ -1,8 +1,33 @@
 import styled from 'styled-components';
 import image from '../images/logos/image1.jpg';
+import { motion } from 'framer-motion';
 const Alarm = () => {
+  const SlideContainer = styled(motion.div)`
+    background-color: white;
+    height: 100%;
+    width: 200px;
+    padding: 20px;
+    border: 1px solid #c2c2c2;
+  `;
+  const box = {
+    start: {
+      opacity: 0,
+      scale: 1,
+      x: -100,
+    },
+    end: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        bounce: 0.3,
+        duration: 0.5,
+      },
+    },
+  };
   return (
-    <SlideContainer>
+    <SlideContainer variants={box} initial="start" animate="end">
       <h3>알림</h3>
       <Slide>
         <p>이번 달</p>
@@ -29,13 +54,7 @@ const Alarm = () => {
   );
 };
 export default Alarm;
-const SlideContainer = styled.div`
-  background-color: white;
-  height: 100%;
-  width: 30%;
-  padding: 20px;
-  border: 1px solid #a3a3a3;
-`;
+
 const Slide = styled.div``;
 const Content = styled.div``;
 const InfoContainer = styled.div`

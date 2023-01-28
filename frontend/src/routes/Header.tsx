@@ -16,10 +16,9 @@ import {
   buttonProfile,
 } from '../atom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Modal from './Modal';
 import Alarm from './Alarm';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [alarm, setAlarm] = useRecoilState(buttonAlarm);
@@ -43,7 +42,7 @@ const Header = () => {
               setAlarm(false);
             }}
           >
-            <IconSelect>{home ? <AiFillHome /> : <AiOutlineHome />}</IconSelect>
+            {home ? <AiFillHome /> : <AiOutlineHome />}
             <span style={{ margin: '0px 5px' }}>홈</span>
           </Item>
           <Item
@@ -56,23 +55,17 @@ const Header = () => {
             <span style={{ margin: '0px 5px' }}>알림</span>
           </Item>
           <Item onClick={() => setModal((prev) => !prev)}>
-            <IconSelect>
-              <AiOutlinePlusSquare />
-            </IconSelect>
+            <AiOutlinePlusSquare />
             <span style={{ margin: '0px 5px' }}>만들기</span>
           </Item>
           <Item>
-            <Link to="/profile">
-              <IconSelect>
-                <BsPersonCircle />
-              </IconSelect>
-              <span style={{ margin: '0px 5px' }}> 프로필</span>
-            </Link>
+            {/* <Link to="/profile"> */}
+            <BsPersonCircle />
+            <span style={{ margin: '0px 5px' }}>프로필</span>
+            {/* </Link> */}
           </Item>
           <Item>
-            <IconSelect>
-              <AiOutlineMenu />
-            </IconSelect>
+            <AiOutlineMenu />
             <span style={{ margin: '0px 5px' }}>메뉴</span>
           </Item>
         </Items>
@@ -87,13 +80,11 @@ const Container = styled.div`
   display: flex;
   top: 0;
   position: fixed;
-  border: 1px solid #a3a3a3;
   height: 100%;
-  width: 100%;
 `;
 const NavigationBar = styled.div`
   background-color: white;
-  width: 20%;
+  width: 200px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -106,22 +97,29 @@ const Items = styled.ul`
   width: 80%;
 `;
 const Item = styled.li`
-  padding: 2px 15px;
+  padding: 2px 0px;
+  padding-left: 10px;
   margin: 10px;
-  // margin: 25px 0px;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
   font-size: 19px;
   cursor: pointer;
   &:hover {
     background-color: #f5f5f5;
-      font-size:20px;
-    
+    svg {
+      font-size: 20px;
+    }
   }
   border-radius: 30px;
   height: 45px;
-  width:80%;
+  width: 80%;
+  svg,
+  span {
+    place-self: center start;
+  }
+  a {
+    width: 45px;
+    height: 100%;
+  }
 `;
-const IconSelect = styled.div`
- 
-`;
+const IconSelect = styled.div``;
