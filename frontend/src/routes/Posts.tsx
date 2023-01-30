@@ -88,7 +88,7 @@ export default Posts;
 const PostContainer = styled.div`
   margin-left: 10%;
   width: 100%;
-  background-color: whitesmoke;
+  background-color: #FCFCFC;
   display: flex;
   justify-content: center;
 `;
@@ -98,7 +98,7 @@ const CardList = styled.ul`
 `;
 const Card = styled.li`
   border: 1px solid #c2c2c2;
-  background-color: white;
+  background-color: #FCFCFC;
   height: 1000px;
   margin: 20px 0px;
   display: flex;

@@ -7,10 +7,12 @@ import { useEffect } from 'react';
 const SlideContainer = styled(motion.div)`
   background-color: white;
   height: 100%;
-  width: 200px;
+  width: 400px;
   padding: 20px;
   border: 1px solid #c2c2c2;
-  border-top-right-radius: 50px;
+  border-top-right-radius: 20px;
+  box-shadow: rgba(135, 135, 138, 0.2) 12px 5px 27px -5px,
+    rgba(0, 0, 0, 0.3) 12px 8px 16px -8px;
 `;
 const box = {
   start: {
@@ -44,7 +46,8 @@ const Alarm = () => {
   }, [alarmState]);
 
   return (
-    <SlideContainer variants={box} initial="start" animate={animationAlarm}>
+    <SlideContainer 
+    variants={box} initial="start" animate={animationAlarm}>
       <h3>알림</h3>
       <Slide>
         <p>이번 달</p>

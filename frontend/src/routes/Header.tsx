@@ -7,7 +7,7 @@ import {
   AiFillHeart,
   AiOutlineHome,
 } from 'react-icons/ai';
-import { BsPersonCircle } from 'react-icons/bs';
+import { IoPersonCircleOutline, IoPersonCircleSharp } from 'react-icons/io5';
 import {
   buttonAlarm,
   buttonHome,
@@ -19,18 +19,6 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { motion, useAnimation } from 'framer-motion';
 import Alarm from './Alarm';
 import { Link } from 'react-router-dom';
-
-const circleAni = {
-  start: {
-    opacity: 0,
-  },
-  end: {
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-    },
-  },
-};
 
 const Header = () => {
   const [alarm, setAlarm] = useRecoilState(buttonAlarm);
@@ -44,6 +32,7 @@ const Header = () => {
     <Container>
       <NavigationBar>
         <h2>Unigram</h2>
+
         <Items>
           <Item
             onClick={() => {
@@ -55,14 +44,20 @@ const Header = () => {
           >
             {home ? (
               <>
-                <Cicle layoutId="circle" />
-                <AiFillHome />{' '}
+                <AiFillHome />
               </>
             ) : (
               <AiOutlineHome />
             )}
             <Link to="/">
-              <span style={{ margin: '0px 5px' }}>홈</span>
+              <span
+                style={{
+                  margin: '0px 5px',
+                  fontWeight: home ? 600 : 'normal',
+                }}
+              >
+                홈
+              </span>
             </Link>
           </Item>
           <Item
@@ -80,7 +75,11 @@ const Header = () => {
             ) : (
               <AiOutlineHeart />
             )}
-            <span style={{ margin: '0px 5px' }}>알림</span>
+            <span
+              style={{ margin: '0px 5px', fontWeight: alarm ? 600 : 'normal' }}
+            >
+              알림
+            </span>
           </Item>
           <Item
             onClick={() => {
@@ -92,13 +91,18 @@ const Header = () => {
           >
             {make ? (
               <>
-                <Cicle layoutId="circle" />
                 <AiOutlinePlusSquare />
               </>
             ) : (
-              <AiOutlinePlusSquare />
+              <>
+                <AiOutlinePlusSquare />
+              </>
             )}
-            <span style={{ margin: '0px 5px' }}>만들기</span>
+            <span
+              style={{ margin: '0px 5px', fontWeight: make ? 600 : 'normal' }}
+            >
+              만들기
+            </span>
           </Item>
           <Item
             onClick={() => {
@@ -110,19 +114,38 @@ const Header = () => {
           >
             {profile ? (
               <>
-                <Cicle layoutId="circle" />
-                <BsPersonCircle />
+                <IoPersonCircleSharp size="28px" />
+                <Link to="/profile">
+                  <div
+                    style={{
+                      margin: '0px 5px',
+                      width: '100%',
+                      fontWeight: 600,
+                    }}
+                  >
+                    프로필
+                  </div>
+                </Link>
               </>
             ) : (
-              <BsPersonCircle />
+              <>
+                <IoPersonCircleOutline size="26px" />
+                <Link to="/profile">
+                  <div
+                    style={{
+                      margin: '0px 5px',
+                      width: '100%',
+                      fontWeight: 'normal',
+                    }}
+                  >
+                    프로필
+                  </div>
+                </Link>
+              </>
             )}
-            <Link to="/profile">
-              <div style={{ margin: '0px 5px', width: '100%' }}>프로필</div>
-            </Link>
           </Item>
           <Item>
             <AiOutlineMenu />
-
             <span style={{ margin: '0px 5px' }}>메뉴</span>
           </Item>
         </Items>
@@ -140,6 +163,7 @@ const Container = styled.div`
   height: 100%;
 `;
 const NavigationBar = styled.div`
+  border-right: 1px solid #c2c2c2;
   background-color: white;
   width: 200px;
   height: 100%;
