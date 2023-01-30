@@ -66,5 +66,6 @@ table {
 a{
 	text-decoration:none;
 	color:black;
+  width:100%;
 }
   `;

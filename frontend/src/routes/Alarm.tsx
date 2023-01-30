@@ -1,33 +1,50 @@
 import styled from 'styled-components';
 import image from '../images/logos/image1.jpg';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { useRecoilValue } from 'recoil';
+import { buttonAlarm } from '../atom';
+import { useEffect } from 'react';
+const SlideContainer = styled(motion.div)`
+  background-color: white;
+  height: 100%;
+  width: 200px;
+  padding: 20px;
+  border: 1px solid #c2c2c2;
+  border-top-right-radius: 50px;
+`;
+const box = {
+  start: {
+    opacity: 0,
+    scale: 1,
+    x: -100,
+    transition: {
+      type: 'linear',
+      duration: 0.5,
+    },
+  },
+  end: {
+    opacity: 1,
+    scale: 1,
+    x: 0,
+    transition: {
+      type: 'linear',
+      duration: 0.5,
+    },
+  },
+};
 const Alarm = () => {
-  const SlideContainer = styled(motion.div)`
-    background-color: white;
-    height: 100%;
-    width: 200px;
-    padding: 20px;
-    border: 1px solid #c2c2c2;
-  `;
-  const box = {
-    start: {
-      opacity: 0,
-      scale: 1,
-      x: -100,
-    },
-    end: {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      transition: {
-        type: 'spring',
-        bounce: 0.3,
-        duration: 0.5,
-      },
-    },
-  };
+  const animationAlarm = useAnimation();
+  const alarmState = useRecoilValue(buttonAlarm);
+  useEffect(() => {
+    if (alarmState) {
+      animationAlarm.start('end');
+    } else {
+      animationAlarm.start('start');
+    }
+  }, [alarmState]);
+
   return (
-    <SlideContainer variants={box} initial="start" animate="end">
+    <SlideContainer variants={box} initial="start" animate={animationAlarm}>
       <h3>알림</h3>
       <Slide>
         <p>이번 달</p>

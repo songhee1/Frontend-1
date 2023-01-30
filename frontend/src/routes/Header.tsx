@@ -16,9 +16,21 @@ import {
   buttonProfile,
 } from '../atom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { useEffect, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import Alarm from './Alarm';
 import { Link } from 'react-router-dom';
+
+const circleAni = {
+  start: {
+    opacity: 0,
+  },
+  end: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 const Header = () => {
   const [alarm, setAlarm] = useRecoilState(buttonAlarm);
@@ -28,9 +40,6 @@ const Header = () => {
   const setModal = useSetRecoilState(buttonModal);
   const modal = useRecoilValue(buttonModal);
   const isAlarmClicked = useRecoilValue(buttonAlarm);
-  useEffect(() => {
-    console.log(modal);
-  }, [modal]);
   return (
     <Container>
       <NavigationBar>
@@ -40,37 +49,85 @@ const Header = () => {
             onClick={() => {
               setHome((prev) => !prev);
               setAlarm(false);
+              setMake(false);
+              setProfile(false);
             }}
           >
-            {home ? <AiFillHome /> : <AiOutlineHome />}
-            <span style={{ margin: '0px 5px' }}>홈</span>
+            {home ? (
+              <>
+                <Cicle layoutId="circle" />
+                <AiFillHome />{' '}
+              </>
+            ) : (
+              <AiOutlineHome />
+            )}
+            <Link to="/">
+              <span style={{ margin: '0px 5px' }}>홈</span>
+            </Link>
           </Item>
           <Item
             onClick={() => {
               setAlarm((prev) => !prev);
               setHome(false);
+              setMake(false);
+              setProfile(false);
             }}
           >
-            {alarm ? <AiFillHeart /> : <AiOutlineHeart />}
+            {alarm ? (
+              <>
+                <Cicle layoutId="circle" /> <AiFillHeart />
+              </>
+            ) : (
+              <AiOutlineHeart />
+            )}
             <span style={{ margin: '0px 5px' }}>알림</span>
           </Item>
-          <Item onClick={() => setModal((prev) => !prev)}>
-            <AiOutlinePlusSquare />
+          <Item
+            onClick={() => {
+              setMake((prev) => !prev);
+              setAlarm(false);
+              setHome(false);
+              setProfile(false);
+            }}
+          >
+            {make ? (
+              <>
+                <Cicle layoutId="circle" />
+                <AiOutlinePlusSquare />
+              </>
+            ) : (
+              <AiOutlinePlusSquare />
+            )}
             <span style={{ margin: '0px 5px' }}>만들기</span>
           </Item>
-          <Item>
-            {/* <Link to="/profile"> */}
-            <BsPersonCircle />
-            <span style={{ margin: '0px 5px' }}>프로필</span>
-            {/* </Link> */}
+          <Item
+            onClick={() => {
+              setMake(false);
+              setAlarm(false);
+              setHome(false);
+              setProfile((prev) => !prev);
+            }}
+          >
+            {profile ? (
+              <>
+                <Cicle layoutId="circle" />
+                <BsPersonCircle />
+              </>
+            ) : (
+              <BsPersonCircle />
+            )}
+            <Link to="/profile">
+              <div style={{ margin: '0px 5px', width: '100%' }}>프로필</div>
+            </Link>
           </Item>
           <Item>
             <AiOutlineMenu />
+
             <span style={{ margin: '0px 5px' }}>메뉴</span>
           </Item>
         </Items>
       </NavigationBar>
-      {isAlarmClicked ? <Alarm /> : null}
+      <Alarm />
     </Container>
   );
 };
@@ -98,10 +155,9 @@ const Items = styled.ul`
 `;
 const Item = styled.li`
   padding: 2px 0px;
-  padding-left: 10px;
-  margin: 10px;
+  margin: 10px 2px;
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 2fr;
   font-size: 19px;
   cursor: pointer;
   &:hover {
@@ -109,17 +165,30 @@ const Item = styled.li`
     svg {
       font-size: 20px;
     }
+    span {
+      cursor: pointer;
+    }
   }
   border-radius: 30px;
   height: 45px;
-  width: 80%;
+  width: 150px;
   svg,
   span {
-    place-self: center start;
+    place-self: center center;
+    width: 100%;
   }
   a {
-    width: 45px;
-    height: 100%;
+    place-self: center;
   }
+  position: relative;
 `;
 const IconSelect = styled.div``;
+const Cicle = styled(motion.div)`
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 100%;
+`;
