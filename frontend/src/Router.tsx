@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Home from './routes/Home';
 import axios from 'axios';
-import Intro from './routes/Intro';
+
 import Profile from './routes/Profile';
+import Intro from './components/Intro';
 function Router() {
   const accessToken = localStorage.getItem('access_token');
   const sendTokenToBackend = () => {

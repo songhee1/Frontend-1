@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
 import { light_mode_theme } from './theme';
 import { RecoilRoot } from 'recoil';
+import {Provider} from 'react-redux';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -13,9 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <RecoilRoot>
+      <Provider store={store}>
       <ThemeProvider theme={light_mode_theme}>
         <App />
       </ThemeProvider>
+      </Provider>
     </RecoilRoot>
   </React.StrictMode>,
 );

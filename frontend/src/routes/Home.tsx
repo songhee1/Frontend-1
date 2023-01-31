@@ -1,11 +1,12 @@
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { buttonAlarm, buttonModal } from '../atom';
-import Contents from './Contents';
-import Header from './Header';
-import Posts from './Posts';
-import Alarm from './Alarm';
-import Modal from './Modal';
+
+import Alarm from '../components/Alarm';
+import Header from '../components/Header';
+import Modal from '../components/Modal';
+import Posts from '../components/Posts';
+
 const Home = () => {
   const modal = useRecoilValue(buttonModal);
 
