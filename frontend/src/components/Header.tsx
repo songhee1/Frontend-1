@@ -15,30 +15,29 @@ import {
   buttonModal,
   buttonProfile,
 } from '../atom';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { motion, useAnimation } from 'framer-motion';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { motion } from 'framer-motion';
 import Alarm from './Alarm';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  //useState지옥..수정필요
   const [alarm, setAlarm] = useRecoilState(buttonAlarm);
   const [home, setHome] = useRecoilState(buttonHome);
-  const [make, setMake] = useRecoilState(buttonMake);
+  const [modal, setModal] = useRecoilState(buttonModal);
   const [profile, setProfile] = useRecoilState(buttonProfile);
-  const setModal = useSetRecoilState(buttonModal);
-  const modal = useRecoilValue(buttonModal);
-  const isAlarmClicked = useRecoilValue(buttonAlarm);
   return (
     <Container>
       <NavigationBar>
-        <h2>Unigram</h2>
-
+        <Text>
+          <h1>Unigram</h1>
+        </Text>
         <Items>
           <Item
             onClick={() => {
               setHome((prev) => !prev);
               setAlarm(false);
-              setMake(false);
+              setModal(false);
               setProfile(false);
             }}
           >
@@ -63,8 +62,8 @@ const Header = () => {
           <Item
             onClick={() => {
               setAlarm((prev) => !prev);
-              setHome(false);
-              setMake(false);
+              setHome((prev) => !prev);
+              setModal(false);
               setProfile(false);
             }}
           >
@@ -83,13 +82,13 @@ const Header = () => {
           </Item>
           <Item
             onClick={() => {
-              setMake((prev) => !prev);
+              setModal((prev) => !prev);
               setAlarm(false);
-              setHome(false);
+              setHome((prev) => !prev);
               setProfile(false);
             }}
           >
-            {make ? (
+            {modal ? (
               <>
                 <AiOutlinePlusSquare />
               </>
@@ -99,14 +98,14 @@ const Header = () => {
               </>
             )}
             <span
-              style={{ margin: '0px 5px', fontWeight: make ? 600 : 'normal' }}
+              style={{ margin: '0px 5px', fontWeight: modal ? 600 : 'normal' }}
             >
               만들기
             </span>
           </Item>
           <Item
             onClick={() => {
-              setMake(false);
+              setModal(false);
               setAlarm(false);
               setHome(false);
               setProfile((prev) => !prev);
@@ -158,9 +157,14 @@ export default Header;
 
 const Container = styled.div`
   display: flex;
-  top: 0;
-  position: fixed;
-  height: 100%;
+  transform:translateX(0px);
+  height:100vh;
+`;
+const Text = styled.div`
+  width: 100%;
+  text-align: left;
+  padding-left: 70px;
+  padding-bottom: 20px;
 `;
 const NavigationBar = styled.div`
   border-right: 1px solid #c2c2c2;
@@ -185,7 +189,7 @@ const Item = styled.li`
   font-size: 19px;
   cursor: pointer;
   &:hover {
-    background-color: #f5f5f5;
+    background-color: #f3f3f3;
     svg {
       font-size: 20px;
     }

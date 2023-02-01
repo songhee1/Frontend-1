@@ -23,7 +23,7 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: row;
 `;

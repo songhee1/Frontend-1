@@ -8,17 +8,16 @@ function App() {
   if (modal) document.body.style.overflow = 'hidden';
   else document.body.style.overflow = 'auto';
   return (
-    <div className="App">
+    <>
       <GlobalStyle />
       <Router />
-    </div>
+    </>
   );
 }
 
 export default App;
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400&display=swap');
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -48,8 +47,9 @@ body {
 //   margin:20px 20px;
 //   padding: 10px ;
   background-color:#FCFCFC;
-  font-family: 'Roboto Slab', serif;
+
 }
+
 ol, ul {
 	list-style: none;
 }

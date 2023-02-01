@@ -86,7 +86,6 @@ const Posts = () => {
 export default Posts;
 
 const PostContainer = styled.div`
-  margin-left: 10%;
   width: 100%;
   background-color: #FCFCFC;
   display: flex;
@@ -106,14 +105,14 @@ const Card = styled.li`
   align-items: center;
   width: 95%;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 const Skeleton = styled(Card)``;
 const CardImg = styled.img`
-  display: block;
-  width: 100%;
-  object-fit: cover;
+ width:100%;
+  object-fit: cover ;
   height: 500px;
+  border-radius: 5px;
 `;
 const SkeletonImg = styled.div`
   height: 500px;

@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 import { GrClose } from 'react-icons/gr';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { buttonModal, modalPageNum } from '../atom';
 import { ImImages } from 'react-icons/im';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
+import { motion } from 'framer-motion';
 
 const Modal = () => {
-  const setModal = useSetRecoilState(buttonModal);
+  const [modal, setModal] = useRecoilState(buttonModal);
   const [imageSrc, setImageSrc] = useState<string>('');
   const encodeFileToBase64 = (e: any) => {
     const reader = new FileReader();
@@ -21,6 +22,18 @@ const Modal = () => {
       };
     });
   };
+
+  const motionModal={
+    start:{
+       
+    },
+    end:{
+
+    }
+  }
+  useEffect(() => {
+    console.log(modal);
+  }, [modal]);
   const [pageNum, setPageNum] = useRecoilState(modalPageNum);
   return (
     <ModalContainer>
@@ -97,19 +110,18 @@ export default Modal;
 
 const ModalContainer = styled.div`
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1;
 `;
-const ModalItem = styled.div`
-  position: absolute;
-  top: 50;
-  right:0;
-  left:0;
-  width: 40vw;
+const ModalItem = styled(motion.div)`
+  width: 400px;
   height: 400px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
