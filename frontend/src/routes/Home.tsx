@@ -12,8 +12,8 @@ const Home = () => {
 
   return (
     <>
-      {modal ? <Modal /> : null}
       <Container>
+        {modal ? <Modal /> : null}
         <Header />
         <Posts />
       </Container>
@@ -26,4 +26,6 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  position: relative;
 `;

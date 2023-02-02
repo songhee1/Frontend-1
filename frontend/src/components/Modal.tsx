@@ -118,7 +118,7 @@ const ModalContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  z-index:1;
 `;
 const ModalItem = styled(motion.div)`
   width: 400px;

@@ -27,6 +27,10 @@ const Header = () => {
   const [modal, setModal] = useRecoilState(buttonModal);
   const [profile, setProfile] = useRecoilState(buttonProfile);
   return (
+    <>
+    {/*Likethis는 임의로 해당 자리에 빈 컴포넌트를 넣어주어 posts 컴포넌트가 정중앙에 정렬되게 하였다. */}
+    <Likethis>
+    </Likethis>
     <Container>
       <NavigationBar>
         <Text>
@@ -149,16 +153,25 @@ const Header = () => {
           </Item>
         </Items>
       </NavigationBar>
+
       <Alarm />
     </Container>
+
+    </>
   );
 };
 export default Header;
-
+const Likethis = styled.div`
+  width: 200px;
+  height: 100%;
+`;
 const Container = styled.div`
   display: flex;
-  transform:translateX(0px);
-  height:100vh;
+  transform: translateX(0px);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top:0;
 `;
 const Text = styled.div`
   width: 100%;

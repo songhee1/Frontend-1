@@ -90,10 +90,12 @@ const PostContainer = styled.div`
   background-color: #FCFCFC;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 const CardList = styled.ul`
-  width: 55%;
+width:55%;
   justify-content: center;
+  align-items: center;
 `;
 const Card = styled.li`
   border: 1px solid #c2c2c2;
