@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import Login from './Login';
-import logoImage from '../Logo.png';
+import logoImage from '../images/logos/logo.png';
 import Slider from './Slider';
 import Footer from './Footer';
 const Intro = () => {

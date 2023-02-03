@@ -19,7 +19,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { motion } from 'framer-motion';
 import Alarm from './Alarm';
 import { Link } from 'react-router-dom';
-
+import logo from '../images/logos/logo.png';
 const Header = () => {
   //useState지옥..수정필요
   const [alarm, setAlarm] = useRecoilState(buttonAlarm);
@@ -28,135 +28,140 @@ const Header = () => {
   const [profile, setProfile] = useRecoilState(buttonProfile);
   return (
     <>
-    {/*Likethis는 임의로 해당 자리에 빈 컴포넌트를 넣어주어 posts 컴포넌트가 정중앙에 정렬되게 하였다. */}
-    <Likethis>
-    </Likethis>
-    <Container>
-      <NavigationBar>
-        <Text>
-          <h1>Unigram</h1>
-        </Text>
-        <Items>
-          <Item
-            onClick={() => {
-              setHome((prev) => !prev);
-              setAlarm(false);
-              setModal(false);
-              setProfile(false);
-            }}
-          >
-            {home ? (
-              <>
-                <AiFillHome />
-              </>
-            ) : (
-              <AiOutlineHome />
-            )}
-            <Link to="/">
+      {/*Likethis는 임의로 해당 자리에 빈 컴포넌트를 넣어주어 posts 컴포넌트가 정중앙에 정렬되게 하였다. */}
+      <Likethis></Likethis>
+      <Container>
+        <NavigationBar>
+          <Text>
+            <h1>Unigram</h1>
+            <Logo />
+          </Text>
+          <Items>
+            <Item
+              onClick={() => {
+                setHome((prev) => !prev);
+                setAlarm(false);
+                setModal(false);
+                setProfile(false);
+              }}
+            >
+              {home ? (
+                <>
+                  <AiFillHome />
+                </>
+              ) : (
+                <AiOutlineHome />
+              )}
+              <Link to="/">
+                <span
+                  style={{
+                    margin: '0px 5px',
+                    fontWeight: home ? 600 : 'normal',
+                  }}
+                >
+                  홈
+                </span>
+              </Link>
+            </Item>
+            <Item
+              onClick={() => {
+                setAlarm((prev) => !prev);
+                setHome((prev) => !prev);
+                setModal(false);
+                setProfile(false);
+              }}
+            >
+              {alarm ? (
+                <>
+                  <Cicle layoutId="circle" /> <AiFillHeart />
+                </>
+              ) : (
+                <AiOutlineHeart />
+              )}
               <span
                 style={{
                   margin: '0px 5px',
-                  fontWeight: home ? 600 : 'normal',
+                  fontWeight: alarm ? 600 : 'normal',
                 }}
               >
-                홈
+                알림
               </span>
-            </Link>
-          </Item>
-          <Item
-            onClick={() => {
-              setAlarm((prev) => !prev);
-              setHome((prev) => !prev);
-              setModal(false);
-              setProfile(false);
-            }}
-          >
-            {alarm ? (
-              <>
-                <Cicle layoutId="circle" /> <AiFillHeart />
-              </>
-            ) : (
-              <AiOutlineHeart />
-            )}
-            <span
-              style={{ margin: '0px 5px', fontWeight: alarm ? 600 : 'normal' }}
+            </Item>
+            <Item
+              onClick={() => {
+                setModal((prev) => !prev);
+                setAlarm(false);
+                setHome((prev) => !prev);
+                setProfile(false);
+              }}
             >
-              알림
-            </span>
-          </Item>
-          <Item
-            onClick={() => {
-              setModal((prev) => !prev);
-              setAlarm(false);
-              setHome((prev) => !prev);
-              setProfile(false);
-            }}
-          >
-            {modal ? (
-              <>
-                <AiOutlinePlusSquare />
-              </>
-            ) : (
-              <>
-                <AiOutlinePlusSquare />
-              </>
-            )}
-            <span
-              style={{ margin: '0px 5px', fontWeight: modal ? 600 : 'normal' }}
+              {modal ? (
+                <>
+                  <AiOutlinePlusSquare />
+                </>
+              ) : (
+                <>
+                  <AiOutlinePlusSquare />
+                </>
+              )}
+              <span
+                style={{
+                  margin: '0px 5px',
+                  fontWeight: modal ? 600 : 'normal',
+                }}
+              >
+                만들기
+              </span>
+            </Item>
+            <Item
+              onClick={() => {
+                setModal(false);
+                setAlarm(false);
+                setHome(false);
+                setProfile((prev) => !prev);
+              }}
             >
-              만들기
-            </span>
-          </Item>
-          <Item
-            onClick={() => {
-              setModal(false);
-              setAlarm(false);
-              setHome(false);
-              setProfile((prev) => !prev);
-            }}
-          >
-            {profile ? (
-              <>
-                <IoPersonCircleSharp size="28px" />
-                <Link to="/profile">
-                  <div
-                    style={{
-                      margin: '0px 5px',
-                      width: '100%',
-                      fontWeight: 600,
-                    }}
-                  >
-                    프로필
-                  </div>
-                </Link>
-              </>
-            ) : (
-              <>
-                <IoPersonCircleOutline size="26px" />
-                <Link to="/profile">
-                  <div
-                    style={{
-                      margin: '0px 5px',
-                      width: '100%',
-                      fontWeight: 'normal',
-                    }}
-                  >
-                    프로필
-                  </div>
-                </Link>
-              </>
-            )}
-          </Item>
-          <Item>
-            <AiOutlineMenu />
-            <span style={{ margin: '0px 5px' }}>메뉴</span>
-          </Item>
-        </Items>
-      </NavigationBar>
+              {profile ? (
+                <>
+                  <IoPersonCircleSharp size="28px" />
+                  <Link to="/profile">
+                    <div
+                      style={{
+                        margin: '0px 5px',
+                        width: '100%',
+                        fontWeight: 600,
+                      }}
+                    >
+                      프로필
+                    </div>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <IoPersonCircleOutline size="26px" />
+                  <Link to="/profile">
+                    <span
+                      style={{
+                        margin: '0px 5px',
+                        width: '100%',
+                        fontWeight: 'normal',
+                      }}
+                    >
+                      프로필
+                    </span>
+                  </Link>
+                </>
+              )}
+            </Item>
+            <Item>
+              <AiOutlineMenu />
+              <span style={{ margin: '0px 5px' }}>메뉴</span>
+            </Item>
+          </Items>
+        </NavigationBar>
 
-      <Alarm />
-    </Container>
-
+        <Alarm />
+      </Container>
     </>
   );
 };
@@ -171,25 +176,67 @@ const Container = styled.div`
   height: 100vh;
   position: fixed;
   left: 0;
-  top:0;
+  top: 0;
+`;
+const Logo = styled.div`
+  background-image: url(${logo});
+  background-size: cover;
+  width: 100px;
+  height: 100px;
 `;
 const Text = styled.div`
-  width: 100%;
-  text-align: left;
-  padding-left: 70px;
-  padding-bottom: 20px;
+  @media (max-width: 1280px) {
+    width: 50%;
+    height: 60px;
+    padding-bottom: 10%;
+    /* padding-bottom:20px; */
+    h1 {
+      /* width: 200px; */
+      display: block;
+    }
+    div {
+      display: none;
+    }
+    text-align: center;
+  }
+  @media (max-width: 1024px) {
+    width: 100%;
+    height: 60px;
+    div {
+      display: block;
+    }
+    h1 {
+      display: none;
+    }
+    display: flex;
+    align-items: center;
+    padding: 0px;
+  }
 `;
 const NavigationBar = styled.div`
   border-right: 1px solid #c2c2c2;
   background-color: white;
-  width: 200px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @media (max-width: 1280px) {
+    /* width: 200px; */
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width: 1024px) {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 const Items = styled.ul`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 80%;
@@ -197,10 +244,6 @@ const Items = styled.ul`
 const Item = styled.li`
   padding: 2px 0px;
   margin: 10px 2px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  font-size: 19px;
-  cursor: pointer;
   &:hover {
     background-color: #f3f3f3;
     svg {
@@ -212,7 +255,6 @@ const Item = styled.li`
   }
   border-radius: 30px;
   height: 45px;
-  width: 150px;
   svg,
   span {
     place-self: center center;
@@ -221,13 +263,41 @@ const Item = styled.li`
   a {
     place-self: center;
   }
-  position: relative;
+
+  @media (max-width: 1280px) {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    font-size: 19px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+
+    position: relative;
+  }
+  @media (max-width: 1024px) {
+    width: 80%;
+    span,
+    a {
+      display: none;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+  }
 `;
-const IconSelect = styled.div``;
 const Cicle = styled(motion.div)`
   position: absolute;
   top: 9px;
-  left: 9px;
+  @media (max-width: 1280px) {
+    left: 20px;
+  }
+  @media (max-width: 1024px) {
+    left: 9px;
+  }
   width: 30px;
   height: 30px;
   border: 1px solid black;
