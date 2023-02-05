@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <>
       {/*Likethis는 임의로 해당 자리에 빈 컴포넌트를 넣어주어 posts 컴포넌트가 정중앙에 정렬되게 하였다. */}
-      <Likethis></Likethis>
+     <Likethis/>
       <Container>
         <NavigationBar>
           <Text>
@@ -166,10 +166,7 @@ const Header = () => {
   );
 };
 export default Header;
-const Likethis = styled.div`
-  width: 200px;
-  height: 100%;
-`;
+
 const Container = styled.div`
   display: flex;
   transform: translateX(0px);
@@ -178,6 +175,7 @@ const Container = styled.div`
   left: 0;
   top: 0;
 `;
+
 const Logo = styled.div`
   background-image: url(${logo});
   background-size: cover;
@@ -185,8 +183,22 @@ const Logo = styled.div`
   height: 100px;
 `;
 const Text = styled.div`
+  @media (max-width: 1800px) {
+    width: 80%;
+    height: 60px;
+    padding-bottom: 10%;
+    /* padding-bottom:20px; */
+    h1 {
+      /* width: 200px; */
+      display: block;
+    }
+    div {
+      display: none;
+    }
+    text-align: center;
+  }
   @media (max-width: 1280px) {
-    width: 50%;
+    width: 80%;
     height: 60px;
     padding-bottom: 10%;
     /* padding-bottom:20px; */
@@ -213,12 +225,13 @@ const Text = styled.div`
     padding: 0px;
   }
 `;
+
 const NavigationBar = styled.div`
   border-right: 1px solid #c2c2c2;
   background-color: white;
-  @media (max-width: 1280px) {
+  @media (max-width: 1800px) {
     /* width: 200px; */
-    width: 35%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -234,12 +247,23 @@ const NavigationBar = styled.div`
     align-items: center;
   }
 `;
+const Likethis=styled.div`
+  @media (max-width: 1800px) {
+    /* width: 200px; */
+    width: 20%;
+    height: 100%;
+  }
+  @media (max-width: 1024px) {
+    width: 80px;
+    height: 100%;
+  }
+`
 const Items = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
 `;
 const Item = styled.li`
   padding: 2px 0px;
@@ -264,7 +288,7 @@ const Item = styled.li`
     place-self: center;
   }
 
-  @media (max-width: 1280px) {
+  @media (max-width: 1800px) {
     display: grid;
     grid-template-columns: 1fr 2fr;
     font-size: 19px;
@@ -272,7 +296,7 @@ const Item = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 150px;
+    width: 80%;
 
     position: relative;
   }

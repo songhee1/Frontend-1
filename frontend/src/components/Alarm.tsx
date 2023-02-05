@@ -8,7 +8,7 @@ import { useRef } from 'react';
 const SlideContainer = styled(motion.div)`
   background-color: white;
   height: 100%;
-  width: 400px;
+  width: 120%;
   padding: 20px;
   border: 1px solid #c2c2c2;
   border-top-right-radius: 20px;
