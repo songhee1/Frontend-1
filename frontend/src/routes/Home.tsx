@@ -1,26 +1,24 @@
+import { connect } from 'react-redux';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { buttonAlarm, buttonModal } from '../atom';
-
-import Alarm from '../components/Alarm';
 import Header from '../components/Header';
 import Modal from '../components/Modal';
 import Posts from '../components/Posts';
 
-const Home = () => {
+const Home = (props: any) => {
   const modal = useRecoilValue(buttonModal);
-
+  console.log(props.isModalOpen);
   return (
     <>
       <Container>
-        {modal ? <Modal /> : null}
+        {props.isModalOpen ? <Modal /> : null}
         <Header />
         <Posts />
       </Container>
     </>
   );
 };
-export default Home;
 
 const Container = styled.div`
   width: 100vw;
@@ -29,3 +27,9 @@ const Container = styled.div`
   justify-content: center;
   position: relative;
 `;
+function mapStateToProps(state: any, ownProps: any) {
+  return {
+    isModalOpen: state.modalReducer,
+  };
+}
+export default connect(mapStateToProps)(Home);

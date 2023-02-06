@@ -43,10 +43,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-     min-width:1200px;
 //   margin:20px 20px;
 //   padding: 10px ;
   background-color:#FCFCFC;
+  width:100%;
 
 }
 

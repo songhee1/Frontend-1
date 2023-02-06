@@ -20,16 +20,17 @@ import { motion } from 'framer-motion';
 import Alarm from './Alarm';
 import { Link } from 'react-router-dom';
 import logo from '../images/logos/logo.png';
-const Header = () => {
+import { connect } from 'react-redux';
+const Header = (props: any) => {
   //useState지옥..수정필요
-  const [alarm, setAlarm] = useRecoilState(buttonAlarm);
+  // const [alarm, setAlarm] = useRecoilState(buttonAlarm);
   const [home, setHome] = useRecoilState(buttonHome);
-  const [modal, setModal] = useRecoilState(buttonModal);
-  const [profile, setProfile] = useRecoilState(buttonProfile);
+  // const [modal, setModal] = useRecoilState(buttonModal);
+  // const [profile, setProfile] = useRecoilState(buttonProfile);
   return (
     <>
       {/*Likethis는 임의로 해당 자리에 빈 컴포넌트를 넣어주어 posts 컴포넌트가 정중앙에 정렬되게 하였다. */}
-     <Likethis/>
+      {/* <Likethis/> */}
       <Container>
         <NavigationBar>
           <Text>
@@ -40,9 +41,9 @@ const Header = () => {
             <Item
               onClick={() => {
                 setHome((prev) => !prev);
-                setAlarm(false);
-                setModal(false);
-                setProfile(false);
+                props.dispatch({ type: 'alarmFalse' });
+                props.dispatch({ type: 'modalFalse' });
+                props.dispatch({ type: 'profileFalse' });
               }}
             >
               {home ? (
@@ -65,13 +66,12 @@ const Header = () => {
             </Item>
             <Item
               onClick={() => {
-                setAlarm((prev) => !prev);
+                props.dispatch({ type: 'changeAlarmState' });
                 setHome((prev) => !prev);
-                setModal(false);
-                setProfile(false);
+                props.dispatch({ type: 'modalFalse' });
               }}
             >
-              {alarm ? (
+              {props.isAlarmOpen ? (
                 <>
                   <Cicle layoutId="circle" /> <AiFillHeart />
                 </>
@@ -81,7 +81,7 @@ const Header = () => {
               <span
                 style={{
                   margin: '0px 5px',
-                  fontWeight: alarm ? 600 : 'normal',
+                  fontWeight: props.isAlarmOpen ? 600 : 'normal',
                 }}
               >
                 알림
@@ -89,13 +89,12 @@ const Header = () => {
             </Item>
             <Item
               onClick={() => {
-                setModal((prev) => !prev);
-                setAlarm(false);
+                props.dispatch({ type: 'modalTrue' });
+                props.dispatch({ type: 'alarmFalse' });
                 setHome((prev) => !prev);
-                setProfile(false);
               }}
             >
-              {modal ? (
+              {props.isModalOpen ? (
                 <>
                   <AiOutlinePlusSquare />
                 </>
@@ -107,7 +106,7 @@ const Header = () => {
               <span
                 style={{
                   margin: '0px 5px',
-                  fontWeight: modal ? 600 : 'normal',
+                  fontWeight: props.isModalOpen ? 600 : 'normal',
                 }}
               >
                 만들기
@@ -115,13 +114,13 @@ const Header = () => {
             </Item>
             <Item
               onClick={() => {
-                setModal(false);
-                setAlarm(false);
+                props.dispatch({ type: 'modalFalse' });
+                props.dispatch({ type: 'alarmFalse' });
                 setHome(false);
-                setProfile((prev) => !prev);
+                props.dispatch({ type: 'changeProfileState' });
               }}
             >
-              {profile ? (
+              {props.isProfileOpen ? (
                 <>
                   <IoPersonCircleSharp size="28px" />
                   <Link to="/profile">
@@ -165,7 +164,17 @@ const Header = () => {
     </>
   );
 };
-export default Header;
+
+function mapStateToProps(state: any, ownProps: any) {
+  console.log(state);
+  return {
+    isModalOpen: state.modalReducer,
+    isAlarmOpen: state.alarmReducer,
+    isProfileOpen: state.profileReducer,
+  };
+}
+
+export default connect(mapStateToProps)(Header);
 
 const Container = styled.div`
   display: flex;
@@ -247,17 +256,17 @@ const NavigationBar = styled.div`
     align-items: center;
   }
 `;
-const Likethis=styled.div`
-  @media (max-width: 1800px) {
-    /* width: 200px; */
-    width: 20%;
-    height: 100%;
-  }
-  @media (max-width: 1024px) {
-    width: 80px;
-    height: 100%;
-  }
-`
+// const Likethis=styled.div`
+//   @media (max-width: 1800px) {
+//     /* width: 200px; */
+//     width: 200px;
+//     height: 100%;
+//   }
+//   @media (max-width: 1024px) {
+//     width: 80px;
+//     height: 100%;
+//   }
+// `
 const Items = styled.ul`
   display: flex;
   flex-direction: column;

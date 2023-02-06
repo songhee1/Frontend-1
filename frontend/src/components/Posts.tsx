@@ -86,16 +86,17 @@ const Posts = () => {
 export default Posts;
 
 const PostContainer = styled.div`
-  width: 80%;
   background-color: #fcfcfc;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left:10%;
 `;
 const CardList = styled.ul`
-  width:55%;
   justify-content: center;
   align-items: center;
+  display: flex;
+  flex-direction: column;
 `;
 const Card = styled.li`
   border: 1px solid #c2c2c2;
@@ -108,11 +109,14 @@ const Card = styled.li`
   padding: 20px;
   border-radius: 10px;
   @media (max-width: 1800px) {
-    width: 600px;
+    width: 550px;
+    flex-direction: column;
     align-items: center;
   }
-  @media(max-width:1024px){
-    width:500px;
+  @media (max-width: 1024px) {
+    width: 550px;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 const Skeleton = styled(Card)``;

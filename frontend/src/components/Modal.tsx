@@ -7,9 +7,10 @@ import { ImImages } from 'react-icons/im';
 import { useState, useEffect } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { motion } from 'framer-motion';
+import { connect } from 'react-redux';
 
-const Modal = () => {
-  const [modal, setModal] = useRecoilState(buttonModal);
+const Modal = (props: any) => {
+  // const [modal, setModal] = useRecoilState(buttonModal);
   const [imageSrc, setImageSrc] = useState<string>('');
   const encodeFileToBase64 = (e: any) => {
     const reader = new FileReader();
@@ -23,21 +24,17 @@ const Modal = () => {
     });
   };
 
-  const motionModal={
-    start:{
-       
-    },
-    end:{
-
-    }
-  }
-  useEffect(() => {
-    console.log(modal);
-  }, [modal]);
+  const motionModal = {
+    start: {},
+    end: {},
+  };
+  // useEffect(() => {
+    // console.log(modal);
+  // }, [modal]);
   const [pageNum, setPageNum] = useRecoilState(modalPageNum);
   return (
     <ModalContainer>
-      <CloseContainer onClick={() => setModal((prev) => !prev)}>
+      <CloseContainer onClick={() => props.dispatch({ type: 'modalFalse' })}>
         <GrClose color="blue" size="2rem" />
       </CloseContainer>
       <ModalItem>
@@ -49,16 +46,21 @@ const Modal = () => {
                   setImageSrc((prev) => '');
                   setPageNum(1);
                 }}
+                size="35"
               />
               <h3>자르기</h3>
-              <button onClick={() => setPageNum(3)}>다음</button>
+              <div
+                onClick={() => setPageNum(3)}
+                style={{ color: 'blue', fontSize: '19px' }}
+              >
+                다음
+              </div>
             </ModalHead2>
-            <hr />
             <Item>
               <img
                 src={imageSrc}
                 alt="selectImg"
-                style={{ width: '80%' }}
+                style={{ height: '100%' }}
               ></img>
             </Item>
           </>
@@ -68,7 +70,10 @@ const Modal = () => {
               <h3>새 게시물 만들기</h3>
             </ModalHead>
             <Item>
-              <ImImages size="6rem" style={{ display: 'block' }} />
+              <ImImages
+                size="6rem"
+                style={{ display: 'block', height: '100%' }}
+              />
               <p>사진과 동영상을 여기에 끌어다 놓으세요</p>
               <input
                 type="file"
@@ -94,7 +99,7 @@ const Modal = () => {
               <img
                 src={imageSrc}
                 alt="selectImg"
-                style={{ width: '80%' }}
+                style={{ width: '100%' }}
               ></img>
               <WritePost>
                 <input type="text"></input>
@@ -106,23 +111,28 @@ const Modal = () => {
     </ModalContainer>
   );
 };
-export default Modal;
+function mapStateToProps(state: any, ownProps: any) {
+  console.log(state);
+  return {
+    isModalOpen: state.modalReducer,
+  };
+}
+
+export default connect(mapStateToProps)(Modal);
 
 const ModalContainer = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index:1;
+  z-index: 1;
 `;
 const ModalItem = styled(motion.div)`
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   display: flex;
@@ -134,8 +144,7 @@ const ModalItem = styled(motion.div)`
 const ModalHead = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  border-bottom: 1px solid black;
+  width: 450px;
   align-items: center;
   padding: 20px;
 `;
@@ -149,9 +158,11 @@ const Item = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
 `;
 const Items = styled(Item)`
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `;
 const CloseContainer = styled.div`
   position: absolute;

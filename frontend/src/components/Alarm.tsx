@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { buttonAlarm } from '../atom';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { connect } from 'react-redux';
 const SlideContainer = styled(motion.div)`
   background-color: white;
   height: 100%;
@@ -15,7 +16,7 @@ const SlideContainer = styled(motion.div)`
   box-shadow: rgba(135, 135, 138, 0.2) 12px 5px 27px -5px,
     rgba(0, 0, 0, 0.3) 12px 8px 16px -8px;
   transform-origin: left;
-  z-index:-1;
+  z-index: -1;
 `;
 const box = {
   start: {
@@ -37,72 +38,78 @@ const box = {
     },
   },
 };
-const Alarm = () => {
+const Alarm = (props: any) => {
   const animationAlarm = useAnimation();
   const alarmState = useRecoilValue(buttonAlarm);
   const slide = useRef(null);
   useEffect(() => {
-    if (alarmState) {
+    if (props.isAlarmOpen) {
       animationAlarm.start('end');
     } else {
       animationAlarm.start('start');
     }
-  }, [alarmState]);
+  }, [props.isAlarmOpen]);
 
   return (
     <>
-      
-        <SlideContainer
-          ref={slide}
-          variants={box}
-          initial="start"
-          animate={animationAlarm}
-        >
-          <h2 style={{ paddingBottom: '10px' }}>알림</h2>
-          <Slide>
-            <h3>이번 달</h3>
-            <Content>
-              <InfoContainer>
-                <Logo src={image}></Logo>
-                <Paragraph>
-                  songhee._.23님이 회원님을 팔로우하기 시작했습니다.
-                </Paragraph>
-                <Follow>팔로우</Follow>
-              </InfoContainer>
-              <InfoContainer>
-                <Logo src={image}></Logo>
-                <Paragraph>
-                  songhee._.23님이 회원님을 팔로우하기 시작했습니다.
-                </Paragraph>
-                <Follow>팔로우</Follow>
-              </InfoContainer>
-            </Content>
-          </Slide>
-          <hr />
-          <Slide>
-            <h3>이전 활동</h3>
-            <Content>
-              <InfoContainer>
-                <Logo src={image}></Logo>
-                <Paragraph>
-                  songhee._.23님이 회원님을 팔로우하기 시작했습니다.
-                </Paragraph>
-                <Follow>팔로우</Follow>
-              </InfoContainer>
-              <InfoContainer>
-                <Logo src={image}></Logo>
-                <Paragraph>
-                  songhee._.23님이 회원님을 팔로우하기 시작했습니다.
-                </Paragraph>
-                <Follow>팔로우</Follow>
-              </InfoContainer>
-            </Content>
-          </Slide>
-        </SlideContainer>
+      <SlideContainer
+        ref={slide}
+        variants={box}
+        initial="start"
+        animate={animationAlarm}
+      >
+        <h2 style={{ paddingBottom: '10px' }}>알림</h2>
+        <Slide>
+          <h3>이번 달</h3>
+          <Content>
+            <InfoContainer>
+              <Logo src={image}></Logo>
+              <Paragraph>
+                songhee._.23님이 회원님을 팔로우하기 시작했습니다.
+              </Paragraph>
+              <Follow>팔로우</Follow>
+            </InfoContainer>
+            <InfoContainer>
+              <Logo src={image}></Logo>
+              <Paragraph>
+                songhee._.23님이 회원님을 팔로우하기 시작했습니다.
+              </Paragraph>
+              <Follow>팔로우</Follow>
+            </InfoContainer>
+          </Content>
+        </Slide>
+        <hr />
+        <Slide>
+          <h3>이전 활동</h3>
+          <Content>
+            <InfoContainer>
+              <Logo src={image}></Logo>
+              <Paragraph>
+                songhee._.23님이 회원님을 팔로우하기 시작했습니다.
+              </Paragraph>
+              <Follow>팔로우</Follow>
+            </InfoContainer>
+            <InfoContainer>
+              <Logo src={image}></Logo>
+              <Paragraph>
+                songhee._.23님이 회원님을 팔로우하기 시작했습니다.
+              </Paragraph>
+              <Follow>팔로우</Follow>
+            </InfoContainer>
+          </Content>
+        </Slide>
+      </SlideContainer>
     </>
   );
 };
-export default Alarm;
+function mapStateToProps(state: any, ownProps: any) {
+  console.log(state);
+  return {
+    isAlarmOpen: state.alarmReducer,
+  };
+}
+
+export default connect(mapStateToProps)(Alarm);
 
 const Slide = styled.div``;
 const Content = styled.div`
